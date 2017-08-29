@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+    <persistence-unit name="defaultPU">
+        <!-- Voir http://docs.spring.io/spring-data/jpa/docs/1.8.x/reference/html/#jpa.misc.entity-scanning -->
+
+        <class>fr.husta.test.domain.Meeting</class>
+
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/>
+            <!--<property name="hibernate.hbm2ddl.auto" value="create"/>-->
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+            <property name="hibernate.default_schema" value="public"/>
+
+            <!-- DDL (https://antoniogoncalves.org/2014/12/11/generating-database-schemas-with-jpa-2-1/) -->
+            <property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>
+            <property name="javax.persistence.schema-generation.scripts.create-target" value="target/ddl/sampleCreate.ddl"/>
+            <property name="javax.persistence.schema-generation.scripts.drop-target" value="target/ddl/sampleDrop.ddl"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>
